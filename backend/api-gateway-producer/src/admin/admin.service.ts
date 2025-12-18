@@ -52,7 +52,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
   // Khởi tạo WebSocket connection đến Consumer Service
   private initializeConsumerServiceSocket() {
     const consumerServiceUrl =
-      process.env.CONSUMER_SERVICE_URL || 'http://3.107.102.127:3001';
+      process.env.CONSUMER_SERVICE_URL || 'http://localhost:3001';
 
     console.log('[Admin] Connecting to Consumer Service WebSocket...');
 
@@ -100,7 +100,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
   ): Promise<number> {
     try {
       const consumerServiceUrl =
-        process.env.CONSUMER_SERVICE_URL || 'http://consumer-service:3001';
+        process.env.CONSUMER_SERVICE_URL || 'http://localhost:3001';
 
       // Tạo params: Luôn lọc theo topic
       const params: any = { topic: topicName };
@@ -362,7 +362,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
     Record<string, { totalRecords: number; batches: number }>
   > {
     const producerServiceUrl =
-      process.env.PRODUCER_SERVICE_URL || 'http://3.107.102.127:3000';
+      process.env.PRODUCER_SERVICE_URL || 'http://localhost:3000';
     try {
       // Query producer-log database để lấy statistics
       const response = await axios.get(
@@ -400,7 +400,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
   > {
     try {
       const consumerServiceUrl =
-        process.env.CONSUMER_SERVICE_URL || 'http://consumer-service:3001';
+        process.env.CONSUMER_SERVICE_URL || 'http://localhost:3001';
 
       // Gọi API lấy danh sách tất cả instances
       const response = await axios.get(
@@ -523,7 +523,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
   ) {
     // Gọi sang Consumer Service
     const consumerServiceUrl =
-      process.env.CONSUMER_SERVICE_URL || 'http://consumer-service:3001';
+      process.env.CONSUMER_SERVICE_URL || 'http://localhost:3001';
     const response = await axios.post(
       `${consumerServiceUrl}/api/consumers/dynamic/advanced`,
       {
@@ -572,7 +572,7 @@ export class AdminService implements OnModuleInit, OnModuleDestroy {
     try {
       // Dùng tên service trong Docker network
       const consumerServiceUrl =
-        process.env.CONSUMER_SERVICE_URL || 'http://consumer-service:3001';
+        process.env.CONSUMER_SERVICE_URL || 'http://localhost:3001';
 
       const response = await axios.delete(
         `${consumerServiceUrl}/api/consumers/instances/${consumerId}`,

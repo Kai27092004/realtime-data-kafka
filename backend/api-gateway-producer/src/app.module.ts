@@ -36,7 +36,7 @@ import { ProducersModule } from './producers/producers.module';
     // --- 2. Cấu hình Bull (Redis Queue) ---
     BullModule.forRoot({
       redis: {
-        host: 'redis',
+        host: 'localhost',
         port: 6379,
       },
     }),
