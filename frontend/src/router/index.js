@@ -55,24 +55,24 @@ const routes = [
           {
             path: "topics",
             component: TopicListView,
-            meta: { title: "Quản lý Topic" },
+            meta: { title: "Topic Management" },
           },
           // SỬA: Thêm route chi tiết topic VÀO ĐÂY
           // Nó phải là con của ConfigurationView
           {
             path: "topics/:topicName",
             component: TopicDetailView,
-            meta: { title: "Chi tiết Topic" },
+            meta: { title: "Topic Details" },
           },
           {
             path: "consumers",
             component: ConsumerListView,
-            meta: { title: "Quản lý Consumer" },
+            meta: { title: "Consumer Management" },
           },
           {
             path: "auto-send",
             component: AutoSendView,
-            meta: { title: "Gửi tự động" },
+            meta: { title: "Auto Send" },
           },
         ],
       },

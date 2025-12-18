@@ -47,14 +47,14 @@
           class="flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-50"
         >
           <PencilSquareIcon class="w-5 h-5 mr-2" />
-          Cấu hình
+          Configure
         </button>
         <button
           @click="showDeleteTopicModal = true"
           class="flex items-center px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-600 rounded-lg hover:bg-red-50"
         >
           <TrashIcon class="w-5 h-5 mr-2" />
-          Xóa Topic
+          Delete Topic
         </button>
         <button
           @click="showProduceModal = true"
@@ -91,7 +91,7 @@
             <!-- Search column (left) -->
             <div class="md:col-span-9">
               <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Tìm kiếm</label
+                >Search</label
               >
               <div class="relative">
                 <div
@@ -111,16 +111,16 @@
             <!-- Status column (right) -->
             <div class="md:col-span-3">
               <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Trạng thái</label
+                >Status</label
               >
               <select
                 v-model="statusFilter"
                 class="block w-full p-2 border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm"
               >
-                <option value="">Tất cả trạng thái</option>
-                <option value="Thành công">Thành công</option>
-                <option value="Đang xử lý">Đang xử lý</option>
-                <option value="Thất bại">Thất bại</option>
+                <option value="">All Statuses</option>
+                <option value="Thành công">Success</option>
+                <option value="Đang xử lý">Processing</option>
+                <option value="Thất bại">Failed</option>
               </select>
             </div>
           </div>
@@ -188,7 +188,7 @@
                 :colspan="messageHeaders.length"
                 class="px-6 py-12 text-center text-gray-500"
               >
-                Không tìm thấy message nào cho topic này.
+                No messages found for this topic.
               </td>
             </tr>
           </tbody>
@@ -708,9 +708,9 @@ const handleDeleteTopic = async () => {
 const messageHeaders = [
   "Offset",
   "Partition",
-  "Thời gian bắt đầu",
-  "Thời gian kết thúc",
-  "Tổng thời gian",
+  "Start Time",
+  "End Time",
+  "Duration",
   "Status",
   "Message",
 ];

@@ -21,7 +21,7 @@
             />
           </svg>
         </button>
-        <h1 class="text-3xl font-bold">📤Quản lý Producer</h1>
+        <h1 class="text-3xl font-bold">📤Producer Management</h1>
         
         <!-- WebSocket Status Indicator -->
         <div class="flex items-center space-x-2 px-3 py-1 rounded-full bg-gray-100 text-sm">
@@ -305,12 +305,12 @@
 
         <!-- Search by ID -->
         <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-lg font-semibold mb-3">🔍 Tìm Log theo ID</h3>
+          <h3 class="text-lg font-semibold mb-3">🔍 Search Log by ID</h3>
           <div class="flex gap-4">
             <input
               v-model="searchId"
               type="text"
-              placeholder="Nhập Log ID..."
+              placeholder="Enter Log ID..."
               class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               @keyup.enter="searchLogById"
             />
@@ -319,21 +319,21 @@
               :disabled="!searchId || searching"
               class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
-              {{ searching ? "Đang tìm..." : "Tìm kiếm" }}
+              {{ searching ? "Searching..." : "Search" }}
             </button>
           </div>
         </div>
 
         <!-- All Logs Table -->
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold">Tất cả Logs</h3>
+          <h3 class="text-lg font-semibold">All Logs</h3>
           <div class="flex gap-4 items-center">
             <select
               v-model="filterType"
               class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               @change="fetchAllLogs"
             >
-              <option value="">Tất cả loại</option>
+              <option value="">All Types</option>
               <option value="SINGLE">Single</option>
               <option value="FILE">File</option>
             </select>
@@ -431,7 +431,7 @@
           <!-- Modal Header - Fixed -->
           <div class="bg-white border-b border-gray-200 p-6 flex items-center justify-between rounded-t-lg">
             <h3 class="text-2xl font-bold text-gray-800">
-              📋 Chi tiết Log
+              📋 Details Log
             </h3>
             <button
               @click="closeLogDetail"

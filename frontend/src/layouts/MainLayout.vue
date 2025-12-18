@@ -76,7 +76,7 @@
                       : 'text-gray-400', // *** FIX: Watch 'configuration' path ***
                   ]"
                 />
-                Cấu hình
+                Configuration
               </span>
               <ChevronDownIcon
                 :class="[
@@ -98,7 +98,7 @@
                 ]"
                 @click="handleNavClick"
               >
-                Quản lý Topic
+                Topic Management
               </router-link>
               <router-link
                 to="/consumer-dashboard"
@@ -110,7 +110,7 @@
                 ]"
                 @click="handleNavClick"
               >
-                Quản lý Consumer
+                Consumer Management
               </router-link>
               <router-link
                 to="/configuration/auto-send"
@@ -122,7 +122,7 @@
                 ]"
                 @click="handleNavClick"
               >
-                Gửi tự động
+                Auto Send
               </router-link>
             </div>
           </div>

@@ -8,7 +8,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
         </button>
-        <h1 class="text-3xl font-bold">📥 Quản lý consumer</h1>
+        <h1 class="text-3xl font-bold">📥 Consumer Management</h1>
       </div>
       <button @click="fetchConsumerData"
         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition flex items-center space-x-2">
@@ -100,26 +100,26 @@
 
         <!-- Search by ID -->
         <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-lg font-semibold mb-3">🔍 Tìm Log theo ID</h3>
+          <h3 class="text-lg font-semibold mb-3">🔍 Search Log by ID</h3>
           <div class="flex gap-4">
-            <input v-model="searchId" type="text" placeholder="Nhập Log ID..."
+            <input v-model="searchId" type="text" placeholder="Enter Log ID..."
               class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               @keyup.enter="searchLogById" />
             <button @click="searchLogById" :disabled="!searchId || searching"
               class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
-              {{ searching ? "Đang tìm..." : "Tìm kiếm" }}
+              {{ searching ? "Searching..." : "Search" }}
             </button>
           </div>
         </div>
 
         <!-- All Logs Table -->
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold">Tất cả Logs</h3>
+          <h3 class="text-lg font-semibold">All Logs</h3>
           <div class="flex gap-4 items-center">
             <select v-model="filterStatus"
               class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               @change="fetchAllLogs">
-              <option value="">Tất cả trạng thái</option>
+              <option value="">All Statuses</option>
               <option value="RECEIVED">Received</option>
               <option value="PROCESSING">Processing</option>
               <option value="PROCESSED">Processed</option>
@@ -206,8 +206,8 @@
 
         <!-- Pagination Info -->
         <div v-if="pagination" class="mt-4 text-sm text-gray-600 text-center">
-          Hiển thị {{ allLogs.length }} / {{ pagination.total }} logs
-          (Trang {{ pagination.page }} / {{ pagination.totalPages }})
+          Showing {{ allLogs.length }} / {{ pagination.total }} logs
+          (Page {{ pagination.page }} / {{ pagination.totalPages }})
         </div>
       </div>
 
@@ -218,7 +218,7 @@
           <!-- Modal Header - Fixed -->
           <div class="bg-white border-b border-gray-200 p-6 flex items-center justify-between rounded-t-lg">
             <h3 class="text-2xl font-bold text-gray-800">
-              📋 Chi tiết Consumer Log
+              📋 Consumer Log Details
             </h3>
             <button @click="closeLogDetail" class="text-gray-500 hover:text-gray-700 transition">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

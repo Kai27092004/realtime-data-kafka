@@ -31,20 +31,20 @@
     <!-- Header của bảng -->
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-semibold text-gray-900">
-        Danh sách Topic hiện có
+        Existing Topics
       </h2>
       <div class="flex items-center space-x-4">
         <span class="text-sm text-gray-500">
-          Hiển thị: {{ topicsFromStore.length }} /
+          Showing: {{ topicsFromStore.length }} /
           {{ filteredTopics.length }} topics
-          <span v-if="searchQuery">(đã lọc từ {{ topics.length }} topics)</span>
+          <span v-if="searchQuery">(filtered from {{ topics.length }} topics)</span>
         </span>
         <button
           @click="showCreateTopicModal = true"
           class="flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           <PlusIcon class="w-5 h-5 mr-2" />
-          Thêm Topic mới
+          Create Topic
         </button>
       </div>
     </div>

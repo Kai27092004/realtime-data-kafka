@@ -29,7 +29,7 @@
           "
         >
           <PaperAirplaneIcon class="w-5 h-5 mr-2" />
-          Gửi Transaction đơn lẻ
+          Send Single Transaction
         </button>
         <button
           @click="activeTab = 'csv'"
