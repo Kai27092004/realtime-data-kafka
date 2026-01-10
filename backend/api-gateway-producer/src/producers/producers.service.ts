@@ -117,6 +117,17 @@ export class ProducersService {
       // 1. CẬP NHẬT TRẠNG THÁI 'PROCESSING'
       await this.logRepository.update(logId, { status: LogStatus.PROCESSING });
 
+      // ✅ Broadcast WebSocket event - log processing
+      const processingLog = await this.logRepository.findOne({
+        where: { id: logId },
+      });
+      if (processingLog) {
+        this.producersGateway.broadcastLogUpdated(logId, processingLog);
+        console.log(
+          `[Worker] 📡 Broadcasted log-updated event (PROCESSING) for logId: ${logId}`,
+        );
+      }
+
       const batch: any[] = [];
       const BATCH_SIZE = 100;
       let batchNumber = 0;
@@ -201,6 +212,17 @@ export class ProducersService {
         summaryData,
       );
 
+      // ✅ Broadcast WebSocket event - log completed
+      const completedLog = await this.logRepository.findOne({
+        where: { id: logId },
+      });
+      if (completedLog) {
+        this.producersGateway.broadcastLogUpdated(logId, completedLog);
+        console.log(
+          `[Worker] 📡 Broadcasted log-updated event for logId: ${logId}`,
+        );
+      }
+
       return {
         success: true,
         totalRecords,
@@ -214,6 +236,17 @@ export class ProducersService {
         status: LogStatus.FAILED,
         errorMessage: error.message,
       });
+
+      // ✅ Broadcast WebSocket event - log failed
+      const failedLog = await this.logRepository.findOne({
+        where: { id: logId },
+      });
+      if (failedLog) {
+        this.producersGateway.broadcastLogUpdated(logId, failedLog);
+        console.log(
+          `[Worker] 📡 Broadcasted log-updated event for failed logId: ${logId}`,
+        );
+      }
     } finally {
       // 6. Luôn luôn xóa file tạm
       try {

@@ -465,6 +465,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useKafkaStore } from "@/stores/kafkaStore";
+import { io } from "socket.io-client";
 
 import { useRoute, useRouter } from "vue-router";
 import {
@@ -487,6 +488,9 @@ const showProduceModal = ref(false);
 const showUpdateTopicModal = ref(false);
 const showDeleteTopicModal = ref(false);
 const currentPartitions = ref(null);
+
+// WebSocket
+let socket = null;
 
 const topicName = computed(() => route.params.topicName);
 
@@ -639,6 +643,44 @@ onMounted(async () => {
   } catch (error) {
     console.error("Failed to fetch topic detail:", error);
   }
+
+  // ✅ Setup WebSocket connection to Producer Service
+  console.log("🔌 [TopicDetail] Initializing WebSocket connection...");
+  socket = io("http://localhost:3000", {
+    transports: ["websocket", "polling"],
+    reconnection: true,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    reconnectionAttempts: Infinity,
+    timeout: 20000,
+    autoConnect: true,
+  });
+
+  socket.on("connect", () => {
+    console.log("✅ [TopicDetail] WebSocket connected!");
+  });
+
+  socket.on("connect_error", (error) => {
+    console.error("❌ [TopicDetail] WebSocket connection error:", error);
+  });
+
+  // ✅ Lắng nghe event log được update (status change)
+  socket.on("producer-log-updated", (data) => {
+    console.log("📨 [TopicDetail] Log updated:", data);
+    if (data.log) {
+      // Refresh messages để cập nhật status mới
+      kafkaStore.fetchMessages(topicName.value);
+    }
+  });
+
+  // ✅ Lắng nghe event log mới được tạo
+  socket.on("producer-log-created", (data) => {
+    console.log("📨 [TopicDetail] New log created:", data);
+    if (data.log) {
+      // Refresh messages khi có message mới
+      kafkaStore.fetchMessages(topicName.value);
+    }
+  });
 
   // Setup polling for logs (every 5 seconds)
   logsIntervalId = setInterval(() => {
