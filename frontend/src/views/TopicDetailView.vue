@@ -759,6 +759,7 @@ const messageHeaders = [
 
 const getStatusClass = (status) => {
   if (status === "Thành công") return "bg-green-100 text-green-800";
+  if (status === "COMPLETED") return "bg-green-100 text-green-800";
   if (status === "Đang xử lý") return "bg-blue-100 text-blue-800";
   if (status === "Thất bại") return "bg-red-100 text-red-800";
   return "bg-gray-100 text-gray-800";
@@ -769,6 +770,7 @@ const getLogStatusClass = (status) => {
     PENDING: "bg-yellow-100 text-yellow-800",
     SENT: "bg-blue-100 text-blue-800",
     CONSUMED: "bg-green-100 text-green-800",
+    COMPLETED: "bg-green-100 text-green-800",
     CONSUME_FAILED: "bg-red-100 text-red-800",
   };
   return classes[status] || "bg-gray-100 text-gray-800";
